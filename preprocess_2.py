@@ -2,7 +2,10 @@ import csv
 import numpy as np
 import pickle
 import itertools
+
 from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+
 
 
 path = "G:/Academics/6th Sem/CG/"
@@ -36,7 +39,7 @@ for key, group in itertools.groupby(image_labels, lambda col: col[1]):
 
 		
 
-with open(path+'Temp/train300.txt',"rb") as fp:
+with open(path+'Temp/training_data.txt',"rb") as fp:
 	images = pickle.load(fp)
 
 artist_data = [(c2, n2)
@@ -45,19 +48,25 @@ in itertools.product(image_labels, images)
 if c1.decode('utf-8') == n1]
 
 
-[y_train, x_train] = zip(*artist_data)
+[y, x] = zip(*artist_data)
 
 
 le = preprocessing.LabelEncoder()
-le.fit(y_train)
-y_train = le.transform(y_train) 
+le.fit(y)
+y = le.transform(y) 
 
 
-x_train = np.array(x_train)
-y_train = np.array(y_train)
+x = np.array(x)
+y = np.array(y)
 
-np.save(path+'Temp/x_train300.npy',x_train)
-np.save(path+'Temp/y_train300.npy',y_train)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, stratify = y, shuffle = True)
 
+
+
+np.save(path+'Temp/x_train.npy',x_train)
+np.save(path+'Temp/y_train.npy',y_train)
+
+np.save(path+'Temp/x_test.npy',x_test)
+np.save(path+'Temp/y_test.npy',y_test)
 
 

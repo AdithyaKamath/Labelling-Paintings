@@ -8,14 +8,15 @@ path = "G:/Academics/6th Sem/CG/"
 
 
 
-x = np.load(path + 'Temp/x_train300.npy')
-y = np.load(path + 'Temp/y_train300.npy')
+x_train = np.load(path + 'Temp/x_train.npy')
+y_train = np.load(path + 'Temp/y_train.npy')
 
-x = np.reshape(x, (x.shape[0], -1))
+x_test = np.load(path + 'Temp/x_test.npy')
+y_test = np.load(path + 'Temp/y_test.npy')
 
+x_train = np.reshape(x_train, (x_train.shape[0], -1))
+x_test = np.reshape(x_test, (x_test.shape[0], -1))
 
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, stratify = y, shuffle = True)
 
 clf = svm.SVC()
 clf.fit(x_train, y_train)

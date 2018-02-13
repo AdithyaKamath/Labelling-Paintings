@@ -25,5 +25,5 @@ for i in [1]:
 
 
 	
-with open(path+'Temp/train300.txt',"wb") as fp:
+with open(path+'Temp/training_data.txt',"wb") as fp:
 	pickle.dump(images,fp)
