@@ -17,7 +17,7 @@ image_labels_final = []
 
 
 
-with open(path+"Dataset/train_info.csv",'r',encoding = "utf8") as f:
+with open(path+"Dataset/all_data_info.csv",'r',encoding = "utf8") as f:
 	for l in  csv.reader(f, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True):
 			image_labels.append([cell.encode('utf8') for cell in l])
 		
@@ -25,15 +25,15 @@ with open(path+"Dataset/train_info.csv",'r',encoding = "utf8") as f:
 del(image_labels[0])
 
 
-image_labels = sorted(image_labels, key = lambda col:col[1])
+image_labels = sorted(image_labels, key = lambda col:col[0])
 
+count = 0
 
-
-for key, group in itertools.groupby(image_labels, lambda col: col[1]):
+for key, group in itertools.groupby(image_labels, lambda col: col[0]):
 	temp = list(group)
 	if(len(temp)>=300):
+		count = count + 1
 		image_labels_final.extend(temp)
-
 
 	
 
@@ -42,10 +42,10 @@ for key, group in itertools.groupby(image_labels, lambda col: col[1]):
 with open(path+'Temp/training_data.txt',"rb") as fp:
 	images = pickle.load(fp)
 
-artist_data = [(c2, n2)
-for (c1, c2, c3, c4, c5, c6), (n1, n2)
+artist_data = [(c1, n2)
+for (c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12), (n1, n2)
 in itertools.product(image_labels, images)
-if c1.decode('utf-8') == n1]
+if c12.decode('utf-8') == n1]
 
 
 [y, x] = zip(*artist_data)
