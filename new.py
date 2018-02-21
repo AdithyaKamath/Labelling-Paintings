@@ -57,19 +57,22 @@ except:
     features = inter_model.predict(images)
     print("Feature generation complete")
 
-
-print(x.shape, y.shape)
-print(features.shape, labels.shape)
-
 le = preprocessing.LabelEncoder()
-le.fit(labels)
-y = le.transform(labels) 
-no_classes = len(np.unique(labels))
-print("Number of classes: " + str(no_classes))
-labels = to_categorical(y, num_classes = no_classes)    
+le.fit(y)
+y = le.transform(y) 
+no_classes = len(np.unique(y))
 
-features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size=0.2, stratify = labels , random_state = 2)
 if flag:
+    print(x.shape, y.shape)
+    print(features.shape, labels.shape)
+    le = preprocessing.LabelEncoder()
+    le.fit(labels)
+    labels = le.transform(labels) 
+    no_classes = len(np.unique(labels))
+    print("Number of classes: " + str(no_classes))
+    labels = to_categorical(y, num_classes = no_classes)  
+
+    features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size=0.2, stratify = labels , random_state = 2)
     print("Saving features")
     np.save("features_test1.npy", features_test)
     np.save("labels_test1.npy", labels_test)
@@ -78,7 +81,7 @@ if flag:
 
 images =[]
 print(features_train.shape, labels_train.shape)
-print(type(features_train), type(labels_train))
+print(features_test.shape, labels_test.shape)
 
 input_layer = Input(shape=features_train.shape[1:])
 f1=Flatten()(input_layer)
@@ -91,10 +94,10 @@ y=Dropout(0.5)(y)
 predictions = Dense(no_classes, activation='softmax',kernel_initializer='glorot_normal')(y)
 model = Model(inputs=input_layer, outputs=predictions)
 rms=RMSprop(lr=0.0001)
-model.compile(optimizer=rms, loss='categorical_crossentropy',metrics=['accuracy'])
+model.compile(optimizer= rms, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
 
 print("Training Now")
-model.fit(x = features_train, y = labels_train, nb_epoch = 50, validation_data = [features_test, labels_test],callbacks= [EarlyStopping(patience=4)])
+model.fit(x = features_train, y = labels_train, epochs = 50, validation_data = [features_test, labels_test],callbacks= [EarlyStopping(patience=4)])
 
 print("Training Complete")
 
