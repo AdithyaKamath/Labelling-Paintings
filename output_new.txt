@@ -1,0 +1,67 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2018-02-21 15:45:08.415114: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-02-21 15:45:08.539344: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-02-21 15:45:08.539802: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.51GiB
+2018-02-21 15:45:08.539861: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0)
+Size of data: 24871
+((24871,), (24871,))
+Loading from file
+Files not found
+Image not found: data/newtrain/81823.jpg
+[Errno 2] No such file or directory: 'data/newtrain/81823.jpg'
+Image not found: data/newtrain/95010.jpg
+[Errno 2] No such file or directory: 'data/newtrain/95010.jpg'
+Generating Features
+(24869, 224, 224, 3)
+Feature generation complete
+((24869,), (24869,))
+((24869, 7, 7, 512), (24869,))
+Number of classes: 57
+Saving features
+((19895, 7, 7, 512), (19895, 57))
+(<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
+Training Now
+new.py:97: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  model.fit(x = features_train, y = labels_train, nb_epoch = 50, validation_data = [features_test, labels_test],callbacks= [EarlyStopping(patience=4)])
+Train on 19895 samples, validate on 4974 samples
+Epoch 1/50
+19895/19895 [==============================] - 12s 605us/step - loss: 46.9334 - acc: 0.1428 - val_loss: 12.2003 - val_acc: 0.4194
+Epoch 2/50
+19895/19895 [==============================] - 9s 450us/step - loss: 8.1197 - acc: 0.3719 - val_loss: 5.0551 - val_acc: 0.5306
+Epoch 3/50
+19895/19895 [==============================] - 9s 453us/step - loss: 4.3606 - acc: 0.4883 - val_loss: 3.5029 - val_acc: 0.5553
+Epoch 4/50
+19895/19895 [==============================] - 9s 456us/step - loss: 3.2223 - acc: 0.5547 - val_loss: 2.9809 - val_acc: 0.5720
+Epoch 5/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.7892 - acc: 0.5851 - val_loss: 2.7635 - val_acc: 0.5796
+Epoch 6/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.5434 - acc: 0.6122 - val_loss: 2.6883 - val_acc: 0.5694
+Epoch 7/50
+19895/19895 [==============================] - 9s 455us/step - loss: 2.4295 - acc: 0.6241 - val_loss: 2.6140 - val_acc: 0.5883
+Epoch 8/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.3377 - acc: 0.6346 - val_loss: 2.6646 - val_acc: 0.5631
+Epoch 9/50
+19895/19895 [==============================] - 9s 455us/step - loss: 2.2988 - acc: 0.6413 - val_loss: 2.5973 - val_acc: 0.5850
+Epoch 10/50
+19895/19895 [==============================] - 9s 457us/step - loss: 2.2574 - acc: 0.6489 - val_loss: 2.6414 - val_acc: 0.5750
+Epoch 11/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.2296 - acc: 0.6542 - val_loss: 2.6167 - val_acc: 0.5800
+Epoch 12/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.1979 - acc: 0.6621 - val_loss: 2.6182 - val_acc: 0.5784
+Epoch 13/50
+19895/19895 [==============================] - 9s 455us/step - loss: 2.1932 - acc: 0.6630 - val_loss: 2.5674 - val_acc: 0.5891
+Epoch 14/50
+19895/19895 [==============================] - 9s 455us/step - loss: 2.1693 - acc: 0.6640 - val_loss: 2.5848 - val_acc: 0.5881
+Epoch 15/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.1731 - acc: 0.6652 - val_loss: 2.5965 - val_acc: 0.5907
+Epoch 16/50
+19895/19895 [==============================] - 9s 456us/step - loss: 2.1587 - acc: 0.6684 - val_loss: 2.6220 - val_acc: 0.5846
+Epoch 17/50
+19895/19895 [==============================] - 9s 457us/step - loss: 2.1656 - acc: 0.6671 - val_loss: 2.6004 - val_acc: 0.5832
+Training Complete
+Saving Model
