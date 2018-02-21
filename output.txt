@@ -1,0 +1,66 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+Size of data: 24871
+((24871,), (24871,))
+Image not found: data/newtrain/81823.jpg
+Image not found: data/newtrain/95010.jpg
+((24869,), (24869,))
+Number of classes: 57
+2018-02-21 13:58:11.173043: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-02-21 13:58:11.285350: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-02-21 13:58:11.285629: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.51GiB
+2018-02-21 13:58:11.285653: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0)
+Loading CV data
+
+Loading from file
+Loading from file successful
+((4974, 7, 7, 512), (4974, 57))
+(<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
+Loading train data
+
+Loading from file
+Loading from file successful
+((19895, 7, 7, 512), (19895, 57))
+(<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
+Training Now
+full.py:133: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  model.fit(x = features_train, y = labels_train, nb_epoch = 50, validation_data = [features_test, labels_test],callbacks= [EarlyStopping(patience=4)])
+Train on 19895 samples, validate on 4974 samples
+Epoch 1/50
+19895/19895 [==============================] - 11s 561us/step - loss: 45.7737 - acc: 0.1434 - val_loss: 11.6134 - val_acc: 0.4192
+Epoch 2/50
+19895/19895 [==============================] - 8s 427us/step - loss: 7.8434 - acc: 0.3712 - val_loss: 4.9833 - val_acc: 0.5310
+Epoch 3/50
+19895/19895 [==============================] - 8s 427us/step - loss: 4.3130 - acc: 0.4896 - val_loss: 3.4956 - val_acc: 0.5641
+Epoch 4/50
+19895/19895 [==============================] - 8s 427us/step - loss: 3.2252 - acc: 0.5526 - val_loss: 2.9852 - val_acc: 0.5645
+Epoch 5/50
+19895/19895 [==============================] - 9s 427us/step - loss: 2.7757 - acc: 0.5873 - val_loss: 2.7595 - val_acc: 0.5854
+Epoch 6/50
+19895/19895 [==============================] - 9s 428us/step - loss: 2.5423 - acc: 0.6066 - val_loss: 2.6810 - val_acc: 0.5758
+Epoch 7/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.4402 - acc: 0.6249 - val_loss: 2.6179 - val_acc: 0.5875
+Epoch 8/50
+19895/19895 [==============================] - 9s 427us/step - loss: 2.3560 - acc: 0.6342 - val_loss: 2.6090 - val_acc: 0.5838
+Epoch 9/50
+19895/19895 [==============================] - 9s 428us/step - loss: 2.2922 - acc: 0.6420 - val_loss: 2.5707 - val_acc: 0.5929
+Epoch 10/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.2627 - acc: 0.6463 - val_loss: 2.5954 - val_acc: 0.5852
+Epoch 11/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.2394 - acc: 0.6536 - val_loss: 2.6296 - val_acc: 0.5784
+Epoch 12/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.2065 - acc: 0.6563 - val_loss: 2.5363 - val_acc: 0.6031
+Epoch 13/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.1898 - acc: 0.6651 - val_loss: 2.5757 - val_acc: 0.5903
+Epoch 14/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.1852 - acc: 0.6644 - val_loss: 2.6038 - val_acc: 0.5836
+Epoch 15/50
+19895/19895 [==============================] - 8s 427us/step - loss: 2.1585 - acc: 0.6681 - val_loss: 2.5985 - val_acc: 0.5850
+Epoch 16/50
+19895/19895 [==============================] - 9s 427us/step - loss: 2.1706 - acc: 0.6687 - val_loss: 2.6476 - val_acc: 0.5722
+Training Complete
+Saving Model
