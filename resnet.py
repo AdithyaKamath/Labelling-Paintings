@@ -13,7 +13,7 @@ from keras.layers import Dense, GlobalAveragePooling2D,Input,Flatten,Dropout
 from keras import regularizers
 from keras.callbacks import EarlyStopping
 
-model = ResNet50(weights='imagenet', include_top=False)
+inter_model = ResNet50(weights='imagenet', include_top=False)
 
 path = "data/newtrain/"
 data = pd.read_csv("data/all_data_info.csv")
@@ -32,7 +32,7 @@ try:
     print("Loading from file")
     features_test = np.load("features_test.npy")
     labels_test = np.load("labels_test.npy")
-    features_train = np.load("features_train1.npy")
+    features_train = np.load("features_train.npy")
     labels_train = np.load("labels_train.npy")
     flag = 0
 except:
