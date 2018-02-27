@@ -1,0 +1,90 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2018-02-27 12:39:34.941135: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-02-27 12:39:35.097341: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-02-27 12:39:35.097755: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.51GiB
+2018-02-27 12:39:35.097780: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 224, 224, 3)       0         
+_________________________________________________________________
+block1_conv1 (Conv2D)        (None, 224, 224, 64)      1792      
+_________________________________________________________________
+block1_conv2 (Conv2D)        (None, 224, 224, 64)      36928     
+_________________________________________________________________
+block1_pool (MaxPooling2D)   (None, 112, 112, 64)      0         
+_________________________________________________________________
+block2_conv1 (Conv2D)        (None, 112, 112, 128)     73856     
+_________________________________________________________________
+block2_conv2 (Conv2D)        (None, 112, 112, 128)     147584    
+_________________________________________________________________
+block2_pool (MaxPooling2D)   (None, 56, 56, 128)       0         
+_________________________________________________________________
+block3_conv1 (Conv2D)        (None, 56, 56, 256)       295168    
+_________________________________________________________________
+block3_conv2 (Conv2D)        (None, 56, 56, 256)       590080    
+_________________________________________________________________
+block3_conv3 (Conv2D)        (None, 56, 56, 256)       590080    
+_________________________________________________________________
+block3_pool (MaxPooling2D)   (None, 28, 28, 256)       0         
+_________________________________________________________________
+block4_conv1 (Conv2D)        (None, 28, 28, 512)       1180160   
+_________________________________________________________________
+block4_conv2 (Conv2D)        (None, 28, 28, 512)       2359808   
+_________________________________________________________________
+block4_conv3 (Conv2D)        (None, 28, 28, 512)       2359808   
+_________________________________________________________________
+block4_pool (MaxPooling2D)   (None, 14, 14, 512)       0         
+_________________________________________________________________
+block5_conv1 (Conv2D)        (None, 14, 14, 512)       2359808   
+_________________________________________________________________
+block5_conv2 (Conv2D)        (None, 14, 14, 512)       2359808   
+_________________________________________________________________
+block5_conv3 (Conv2D)        (None, 14, 14, 512)       2359808   
+_________________________________________________________________
+block5_pool (MaxPooling2D)   (None, 7, 7, 512)         0         
+=================================================================
+Total params: 14,714,688
+Trainable params: 14,714,688
+Non-trainable params: 0
+_________________________________________________________________
+Size of train: (13678,)
+Size of CV: (1710,)
+Number of classes: 57
+Loading train images
+(13678, 224, 224, 3)
+Loading test images
+(1710, 224, 224, 3)
+Training Now
+Train on 13678 samples, validate on 1710 samples
+Epoch 1/50
+13678/13678 [==============================] - 88s 6ms/step - loss: 28.4114 - acc: 0.0581 - top_k_categorical_accuracy: 0.1830 - val_loss: 7.5812 - val_acc: 0.1444 - val_top_k_categorical_accuracy: 0.3152
+Epoch 2/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 5.3433 - acc: 0.1619 - top_k_categorical_accuracy: 0.3274 - val_loss: 4.3052 - val_acc: 0.1591 - val_top_k_categorical_accuracy: 0.3351
+Epoch 3/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 3.6314 - acc: 0.2215 - top_k_categorical_accuracy: 0.4400 - val_loss: 3.2116 - val_acc: 0.2737 - val_top_k_categorical_accuracy: 0.5573
+Epoch 4/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 2.9599 - acc: 0.3204 - top_k_categorical_accuracy: 0.6038 - val_loss: 3.7471 - val_acc: 0.2661 - val_top_k_categorical_accuracy: 0.5257
+Epoch 5/50
+13678/13678 [==============================] - 84s 6ms/step - loss: 2.6447 - acc: 0.3857 - top_k_categorical_accuracy: 0.6774 - val_loss: 2.6993 - val_acc: 0.3743 - val_top_k_categorical_accuracy: 0.6947
+Epoch 6/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 2.4381 - acc: 0.4305 - top_k_categorical_accuracy: 0.7255 - val_loss: 2.8600 - val_acc: 0.3789 - val_top_k_categorical_accuracy: 0.6871
+Epoch 7/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 2.2755 - acc: 0.4797 - top_k_categorical_accuracy: 0.7622 - val_loss: 2.4038 - val_acc: 0.4404 - val_top_k_categorical_accuracy: 0.7345
+Epoch 8/50
+13678/13678 [==============================] - 84s 6ms/step - loss: 2.1500 - acc: 0.5102 - top_k_categorical_accuracy: 0.7878 - val_loss: 2.4342 - val_acc: 0.4591 - val_top_k_categorical_accuracy: 0.7480
+Epoch 9/50
+13678/13678 [==============================] - 83s 6ms/step - loss: 2.0455 - acc: 0.5400 - top_k_categorical_accuracy: 0.8101 - val_loss: 2.5124 - val_acc: 0.4392 - val_top_k_categorical_accuracy: 0.7187
+Epoch 10/50
+13678/13678 [==============================] - 84s 6ms/step - loss: 1.9348 - acc: 0.5666 - top_k_categorical_accuracy: 0.8279 - val_loss: 2.6914 - val_acc: 0.4608 - val_top_k_categorical_accuracy: 0.7257
+Epoch 11/50
+13678/13678 [==============================] - 85s 6ms/step - loss: 1.8261 - acc: 0.5900 - top_k_categorical_accuracy: 0.8499 - val_loss: 3.2849 - val_acc: 0.4140 - val_top_k_categorical_accuracy: 0.7076
+Epoch 12/50
+13678/13678 [==============================] - 84s 6ms/step - loss: 1.7447 - acc: 0.6147 - top_k_categorical_accuracy: 0.8600 - val_loss: 2.6397 - val_acc: 0.4661 - val_top_k_categorical_accuracy: 0.7322
+Training Complete
+Saving Model

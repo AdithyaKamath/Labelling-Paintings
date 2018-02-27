@@ -1,0 +1,92 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treate
+d as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2018-02-27 10:25:14.292545: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-02-27 10:25:14.448720: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so r
+eturning NUMA node zero
+2018-02-27 10:25:14.449015: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.51GiB
+2018-02-27 10:25:14.449039: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0,
+ compute capability: 6.0)
+Size of train: (13678,)
+Size of CV: (1710,)
+Number of classes: 57
+Generating Features for train
+(13678, 224, 224, 3)
+Feature generation complete
+Generating Features for test
+(1710, 224, 224, 3)
+Feature generation complete
+((13678, 7, 7, 512), (13678, 57))
+((1710, 7, 7, 512), (1710, 57))
+Training Now
+Train on 13678 samples, validate on 1710 samples
+Epoch 1/50
+13678/13678 [==============================] - 9s 647us/step - loss: 61.1426 - acc: 0.1039 - top_k_categorical_accuracy: 0.2688 - val_loss: 22.5798 - val_acc: 0.3368 - val_top_k_categorical_accura
+cy: 0.5924
+Epoch 2/50
+13678/13678 [==============================] - 6s 426us/step - loss: 14.2710 - acc: 0.2974 - top_k_categorical_accuracy: 0.5788 - val_loss: 8.7136 - val_acc: 0.4427 - val_top_k_categorical_accurac
+y: 0.7345
+Epoch 3/50
+13678/13678 [==============================] - 6s 427us/step - loss: 6.9126 - acc: 0.4505 - top_k_categorical_accuracy: 0.7381 - val_loss: 5.2847 - val_acc: 0.5181 - val_top_k_categorical_accuracy
+: 0.8047
+Epoch 4/50
+13678/13678 [==============================] - 6s 426us/step - loss: 4.5773 - acc: 0.5329 - top_k_categorical_accuracy: 0.8163 - val_loss: 4.0162 - val_acc: 0.5567 - val_top_k_categorical_accuracy
+: 0.8216
+Epoch 5/50
+13678/13678 [==============================] - 6s 430us/step - loss: 3.5020 - acc: 0.5969 - top_k_categorical_accuracy: 0.8594 - val_loss: 3.4407 - val_acc: 0.5637 - val_top_k_categorical_accuracy
+: 0.8257
+Epoch 6/50
+13678/13678 [==============================] - 6s 426us/step - loss: 2.9253 - acc: 0.6402 - top_k_categorical_accuracy: 0.8880 - val_loss: 3.1206 - val_acc: 0.5602 - val_top_k_categorical_accuracy: 0.8392
+Epoch 7/50
+13678/13678 [==============================] - 6s 425us/step - loss: 2.5835 - acc: 0.6660 - top_k_categorical_accuracy: 0.9042 - val_loss: 2.9583 - val_acc: 0.5667 - val_top_k_categorical_accuracy: 0.8281
+Epoch 8/50
+13678/13678 [==============================] - 6s 428us/step - loss: 2.3727 - acc: 0.6836 - top_k_categorical_accuracy: 0.9157 - val_loss: 2.8910 - val_acc: 0.5520 - val_top_k_categorical_accuracy: 0.8164
+Epoch 9/50
+13678/13678 [==============================] - 6s 429us/step - loss: 2.2073 - acc: 0.7076 - top_k_categorical_accuracy: 0.9267 - val_loss: 2.8952 - val_acc: 0.5585 - val_top_k_categorical_accuracy: 0.8199
+Epoch 10/50
+13678/13678 [==============================] - 6s 426us/step - loss: 2.1451 - acc: 0.7081 - top_k_categorical_accuracy: 0.9304 - val_loss: 2.7674 - val_acc: 0.5678 - val_top_k_categorical_accuracy: 0.8357
+Epoch 11/50
+13678/13678 [==============================] - 6s 426us/step - loss: 2.0535 - acc: 0.7265 - top_k_categorical_accuracy: 0.9352 - val_loss: 2.7703 - val_acc: 0.5532 - val_top_k_categorical_accuracy: 0.8111
+Epoch 12/50
+13678/13678 [==============================] - 6s 431us/step - loss: 2.0028 - acc: 0.7323 - top_k_categorical_accuracy: 0.9406 - val_loss: 2.7422 - val_acc: 0.5690 - val_top_k_categorical_accuracy: 0.8257
+Epoch 13/50
+13678/13678 [==============================] - 6s 421us/step - loss: 1.9803 - acc: 0.7340 - top_k_categorical_accuracy: 0.9411 - val_loss: 2.7146 - val_acc: 0.5696 - val_top_k_categorical_accuracy: 0.8187
+Epoch 14/50
+13678/13678 [==============================] - 6s 434us/step - loss: 1.9456 - acc: 0.7353 - top_k_categorical_accuracy: 0.9428 - val_loss: 2.7695 - val_acc: 0.5637 - val_top_k_categorical_accuracy: 0.8251
+Epoch 15/50
+13678/13678 [==============================] - 6s 436us/step - loss: 1.9349 - acc: 0.7343 - top_k_categorical_accuracy: 0.9484 - val_loss: 2.6715 - val_acc: 0.5708 - val_top_k_categorical_accuracy: 0.8234
+Epoch 16/50
+13678/13678 [==============================] - 6s 429us/step - loss: 1.9194 - acc: 0.7391 - top_k_categorical_accuracy: 0.9460 - val_loss: 2.7080 - val_acc: 0.5632 - val_top_k_categorical_accuracy: 0.8205
+Epoch 17/50
+13678/13678 [==============================] - 6s 426us/step - loss: 1.8856 - acc: 0.7468 - top_k_categorical_accuracy: 0.9504 - val_loss: 2.7358 - val_acc: 0.5667 - val_top_k_categorical_accuracy: 0.8304
+Epoch 18/50
+13678/13678 [==============================] - 6s 425us/step - loss: 1.8759 - acc: 0.7456 - top_k_categorical_accuracy: 0.9520 - val_loss: 2.8041 - val_acc: 0.5602 - val_top_k_categorical_accuracy: 0.8193
+Epoch 19/50
+13678/13678 [==============================] - 6s 426us/step - loss: 1.8640 - acc: 0.7508 - top_k_categorical_accuracy: 0.9468 - val_loss: 2.7331 - val_acc: 0.5632 - val_top_k_categorical_accuracy: 0.8187
+Epoch 20/50
+13678/13678 [==============================] - 6s 416us/step - loss: 1.8566 - acc: 0.7486 - top_k_categorical_accuracy: 0.9498 - val_loss: 2.6293 - val_acc: 0.5760 - val_top_k_categorical_accuracy: 0.8333
+Epoch 21/50
+13678/13678 [==============================] - 6s 417us/step - loss: 1.8700 - acc: 0.7455 - top_k_categorical_accuracy: 0.9485 - val_loss: 2.6491 - val_acc: 0.5749 - val_top_k_categorical_accuracy: 0.8287
+Epoch 22/50
+13678/13678 [==============================] - 6s 416us/step - loss: 1.8667 - acc: 0.7470 - top_k_categorical_accuracy: 0.9494 - val_loss: 2.7415 - val_acc: 0.5760 - val_top_k_categorical_accuracy: 0.8240
+Epoch 23/50
+13678/13678 [==============================] - 6s 416us/step - loss: 1.8493 - acc: 0.7530 - top_k_categorical_accuracy: 0.9520 - val_loss: 2.7517 - val_acc: 0.5632 - val_top_k_categorical_accuracy: 0.8263
+Epoch 24/50
+13678/13678 [==============================] - 6s 417us/step - loss: 1.8349 - acc: 0.7546 - top_k_categorical_accuracy: 0.9524 - val_loss: 2.7277 - val_acc: 0.5602 - val_top_k_categorical_accuracy: 0.8269
+Epoch 25/50
+13678/13678 [==============================] - 6s 417us/step - loss: 1.8193 - acc: 0.7574 - top_k_categorical_accuracy: 0.9525 - val_loss: 2.6709 - val_acc: 0.5737 - val_top_k_categorical_accuracy: 0.8304
+Epoch 26/50
+13678/13678 [==============================] - 6s 417us/step - loss: 1.8195 - acc: 0.7576 - top_k_categorical_accuracy: 0.9541 - val_loss: 2.6879 - val_acc: 0.5766 - val_top_k_categorical_accuracy: 0.8287
+Epoch 27/50
+13678/13678 [==============================] - 6s 417us/step - loss: 1.8300 - acc: 0.7526 - top_k_categorical_accuracy: 0.9524 - val_loss: 2.8002 - val_acc: 0.5673 - val_top_k_categorical_accuracy: 0.8175
+Epoch 28/50
+13678/13678 [==============================] - 6s 422us/step - loss: 1.8263 - acc: 0.7539 - top_k_categorical_accuracy: 0.9502 - val_loss: 2.6985 - val_acc: 0.5749 - val_top_k_categorical_accuracy: 0.8234
+Epoch 29/50
+13678/13678 [==============================] - 6s 429us/step - loss: 1.8116 - acc: 0.7534 - top_k_categorical_accuracy: 0.9519 - val_loss: 2.7034 - val_acc: 0.5696 - val_top_k_categorical_accuracy: 0.8275
+Epoch 30/50
+13678/13678 [==============================] - 6s 427us/step - loss: 1.8021 - acc: 0.7573 - top_k_categorical_accuracy: 0.9565 - val_loss: 2.7864 - val_acc: 0.5632 - val_top_k_categorical_accuracy
+: 0.8251
