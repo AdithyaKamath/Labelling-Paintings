@@ -6,7 +6,7 @@ from PIL import Image
 from tqdm import tqdm
 #from PIL import ImageFile
 #ImageFile.LOAD_TRUNCATED_IMAGES = True
-path = "C:\\Users\\lenovo\\Documents\\CS\\6Sem\\CG\\train"
+path = "data/train"
 
 all_files = [x for x in os.listdir(path)
                  if os.path.isfile( os.path.join(path, x) )]
@@ -17,9 +17,9 @@ count = 0
 for image_filename in tqdm(all_files):
 	try:
 		img = Image.open( os.path.join(path, image_filename) )
-		img.resize((224, 224))\
+		img.resize((299, 299))\
 			.convert('RGB')\
-			.save( os.path.join("C:\\Users\\lenovo\\Documents\\CS\\6Sem\\CG\\newtrain", image_filename) )
+			.save( os.path.join("data/train299/", image_filename) )
 		count = count + 1
 	except Exception as e:
 		print("Unable to process {}".format(image_filename))

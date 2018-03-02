@@ -3,21 +3,20 @@ import numpy as np
 import os
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from keras.applications.vgg16 import VGG16
+from keras.applications.resnet50 import ResNet50
 from keras.preprocessing import image
-from keras.applications.vgg16 import preprocess_input
+from keras.applications.resnet50 import preprocess_input, decode_predictions
 from keras.models import Model
 from keras.utils import to_categorical
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras.layers import Dense, GlobalAveragePooling2D,Input,Flatten,Dropout
-from keras.layers.advanced_activations import PReLU
 from keras import regularizers
-from keras.callbacks import EarlyStopping, ReduceLROnPlateau
+from keras.callbacks import EarlyStopping
 
 flag = 1
 save = 1
 
-inter_model = VGG16(weights='imagenet', include_top=False)
+inter_model = ResNet50(weights='imagenet', include_top=False)
 
 path = "data/newtrain/"
 x_train = np.load("x_train.npy")
@@ -37,7 +36,6 @@ no_classes = len(np.unique(y_train))
 print("Number of classes: " + str(no_classes))
 y_train = to_categorical(y_train, num_classes = no_classes)
 y_test = to_categorical(y_test, num_classes = no_classes)
-
 
 if(flag == 0):
     images = np.zeros((x_train.shape[0],224,224,3))
@@ -70,34 +68,36 @@ if(flag == 0):
     images =[]
 
     if save:
-        np.save("features_vgg16_train.npy", features_train)
-        np.save("features_vgg16_test.npy", features_test)
+        np.save("features_resnet_train.npy", features_train)
+        np.save("features_resnet_test.npy", features_test)
 else:
     print("Loading features from files")
-    features_train = np.load("features_vgg16_train.npy")
-    features_test = np.load("features_vgg16_test.npy")
+    features_train = np.load("features_resnet_train.npy")
+    features_test = np.load("features_resnet_test.npy")
     print("Finished loading from file")
+
+print(features_train.shape, y_train.shape)
+print(features_test.shape, y_test.shape)
 
 input_layer = Input(shape=features_train.shape[1:])
 f1=Flatten()(input_layer)
 y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(f1)
-y=Dropout(0.75)(y)
-#y = Dense(1024, activation=PReLU(alpha_initializer='he_normal'),kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(y)
-#y = Dropout(0.5)(y)
+y=Dropout(0.5)(y)
+#y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(y)
+#y=Dropout(0.5)(y)
 #y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.01),activity_regularizer=regularizers.l1(0.01))(y)
 #y=Dropout(0.5)(y)
 predictions = Dense(no_classes, activation='softmax',kernel_initializer='glorot_normal')(y)
 model = Model(inputs=input_layer, outputs=predictions)
-rms=RMSprop(lr=0.0001)#, decay = 0.01)
-model.compile(optimizer= rms, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
-
-#reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=4)
-early = EarlyStopping(monitor='val_loss', min_delta=0, patience=7, verbose=1, mode='auto')
-
+#rms=RMSprop(lr=0.0001)
+#model.compile(optimizer= rms, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
+adam = Adam(lr=0.0001,decay = 0.01)
+model.compile(optimizer= adam, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
+early = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=1, mode='auto')
 print("Training Now")
-model.fit(x = features_train, y = y_train, epochs = 50, validation_data = [features_test, y_test],callbacks= [early])#,reduce_lr])
+model.fit(x = features_train, y = y_train, epochs = 50, validation_data = [features_test, y_test],callbacks= [early])
 
 print("Training Complete")
 
 print("Saving Model")
-model.save('vgg16_artist_pred_new.h5')
+model.save('resnet50_artist_pred.h5')

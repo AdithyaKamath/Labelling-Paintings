@@ -7,22 +7,18 @@ from keras.preprocessing import image
 from keras.utils import to_categorical
 
 path = "data/newtrain/"
+store_path = 'time/'
 data = pd.read_csv("data/all_data_info.csv")
+data_time = data[data['date'].notnull()]
+df_time = data_time[pd.to_numeric(data_time['date'], errors='coerce').notnull()]
+df_time['date'] = pd.to_numeric(data_time['date'], errors='coerce', downcast='integer')
+df_time['date'] = df_time['date'].astype('int')
 
-# Selects artists who occur more than 300 times
-X = data.groupby('artist').filter(lambda x: len(x) >= 300)
+print(df_style.style.value_counts(), df_style.shape[0])
 
-print(X.shape)
-
-# Selects 300 instances per artist
-X_new = X.groupby('artist', as_index=False).apply(lambda array: array.loc[np.random.choice(array.index, 300, False),:])
-
-print(X_new.shape)
-
-x = X_new.new_filename
-y = X_new.artist
+x = df_style.new_filename
+y = df_style.style
 labels = []
-mean = np.zeros((224,224,3))
 
 i1 = 0
 for i in range(x.shape[0]):
@@ -50,11 +46,10 @@ print(x_train.shape, x_test.shape, labels_train.shape, labels_test.shape)
 x_cv, x_test, labels_cv, labels_test = train_test_split(x_test, labels_test, test_size=0.5, stratify = labels_test , random_state = 2)
 print(x_cv.shape, x_test.shape, labels_cv.shape, labels_test.shape)
 
-np.save('x_train.npy', x_train)
-np.save('x_test.npy', x_train)
-np.save('x_cv.npy', x_cv)
-np.save('y_train.npy', labels_train)
-np.save('y_test.npy', labels_test)
-np.save('y_cv.npy', labels_cv)
-np.save('mean.npy',mean1)
-
+np.save(store_path + 'x_train.npy', x_train)
+np.save(store_path + 'x_test.npy', x_train)
+np.save(store_path + 'x_cv.npy', x_cv)
+np.save(store_path + 'y_train.npy', labels_train)
+np.save(store_path + 'y_test.npy', labels_test)
+np.save(store_path + 'y_cv.npy', labels_cv)
+np.save(store_path + 'mean.npy',mean1)
