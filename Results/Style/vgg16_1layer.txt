@@ -1,0 +1,48 @@
+Size of train: (26557,)
+Size of CV: (3320,)
+Number of classes: 8
+Loading train images
+
+
+Generating Features for train
+(26557, 224, 224, 3)
+Feature generation complete
+Loading test images
+Generating Features for test
+(3320, 224, 224, 3)
+Feature generation complete
+Training Now
+Train on 26557 samples, validate on 3320 samples
+Epoch 1/50
+26557/26557 [==============================] - 14s 538us/step - loss: 45.3952 - acc: 0.3275 - top_k_categorical_accuracy: 0.8522 - val_loss: 7.9541 - val_acc: 0.4642 - val_top_k_categorical_accuracy: 0.9361
+Epoch 2/50
+26557/26557 [==============================] - 11s 432us/step - loss: 3.9922 - acc: 0.4467 - top_k_categorical_accuracy: 0.9276 - val_loss: 2.2441 - val_acc: 0.4997 - val_top_k_categorical_accuracy: 0.9518
+Epoch 3/50
+26557/26557 [==============================] - 12s 438us/step - loss: 2.0636 - acc: 0.5014 - top_k_categorical_accuracy: 0.9443 - val_loss: 1.8732 - val_acc: 0.5127 - val_top_k_categorical_accuracy: 0.9512
+Epoch 4/50
+26557/26557 [==============================] - 12s 439us/step - loss: 1.8586 - acc: 0.5189 - top_k_categorical_accuracy: 0.9502 - val_loss: 1.8102 - val_acc: 0.5163 - val_top_k_categorical_accuracy: 0.9482
+Epoch 5/50
+26557/26557 [==============================] - 12s 440us/step - loss: 1.7918 - acc: 0.5346 - top_k_categorical_accuracy: 0.9553 - val_loss: 1.7890 - val_acc: 0.5117 - val_top_k_categorical_accuracy: 0.9560
+Epoch 6/50
+26557/26557 [==============================] - 12s 440us/step - loss: 1.7551 - acc: 0.5463 - top_k_categorical_accuracy: 0.9584 - val_loss: 1.7549 - val_acc: 0.5367 - val_top_k_categorical_accuracy: 0.9560
+Epoch 7/50
+26557/26557 [==============================] - 12s 440us/step - loss: 1.7261 - acc: 0.5530 - top_k_categorical_accuracy: 0.9593 - val_loss: 1.8032 - val_acc: 0.5280 - val_top_k_categorical_accuracy: 0.9494
+Epoch 8/50
+26557/26557 [==============================] - 12s 442us/step - loss: 1.7194 - acc: 0.5593 - top_k_categorical_accuracy: 0.9608 - val_loss: 1.7303 - val_acc: 0.5428 - val_top_k_categorical_accuracy: 0.9539
+Epoch 9/50
+26557/26557 [==============================] - 12s 442us/step - loss: 1.7071 - acc: 0.5677 - top_k_categorical_accuracy: 0.9591 - val_loss: 1.8171 - val_acc: 0.5271 - val_top_k_categorical_accuracy: 0.9527
+Epoch 10/50
+26557/26557 [==============================] - 12s 439us/step - loss: 1.7086 - acc: 0.5670 - top_k_categorical_accuracy: 0.9629 - val_loss: 1.8484 - val_acc: 0.5160 - val_top_k_categorical_accuracy: 0.9476
+Epoch 11/50
+26557/26557 [==============================] - 12s 440us/step - loss: 1.7012 - acc: 0.5732 - top_k_categorical_accuracy: 0.9644 - val_loss: 1.8463 - val_acc: 0.5199 - val_top_k_categorical_accuracy: 0.9509
+Epoch 12/50
+26557/26557 [==============================] - 12s 441us/step - loss: 1.6928 - acc: 0.5748 - top_k_categorical_accuracy: 0.9634 - val_loss: 1.8496 - val_acc: 0.5193 - val_top_k_categorical_accuracy: 0.9545
+Epoch 13/50
+26557/26557 [==============================] - 12s 442us/step - loss: 1.6899 - acc: 0.5725 - top_k_categorical_accuracy: 0.9618 - val_loss: 1.7888 - val_acc: 0.5422 - val_top_k_categorical_accuracy: 0.9572
+Epoch 14/50
+26557/26557 [==============================] - 12s 441us/step - loss: 1.6885 - acc: 0.5789 - top_k_categorical_accuracy: 0.9620 - val_loss: 1.8313 - val_acc: 0.5127 - val_top_k_categorical_accuracy: 0.9491
+Epoch 15/50
+26557/26557 [==============================] - 12s 443us/step - loss: 1.6814 - acc: 0.5818 - top_k_categorical_accuracy: 0.9644 - val_loss: 1.8252 - val_acc: 0.5358 - val_top_k_categorical_accuracy: 0.9509
+Epoch 00015: early stopping
+Training Complete
+Saving Model

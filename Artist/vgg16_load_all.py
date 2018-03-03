@@ -20,11 +20,12 @@ save = 1
 inter_model = VGG16(weights='imagenet', include_top=False)
 
 path = "data/newtrain/"
-x_train = np.load("x_train.npy")
-x_test = np.load("x_cv.npy")
-y_train = np.load("y_train.npy")
-y_test = np.load("y_cv.npy")
-mean = np.load("mean.npy")
+store_path = 'artist/'
+x_train = np.load(store_path + "x_train.npy")
+x_test = np.load(store_path + "x_cv.npy")
+y_train = np.load(store_path + "y_train.npy")
+y_test = np.load(store_path + "y_cv.npy")
+mean = np.load(store_path + "mean.npy")
 
 
 print("Size of train: " + str(x_train.shape))

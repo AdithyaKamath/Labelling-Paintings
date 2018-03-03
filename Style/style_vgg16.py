@@ -3,9 +3,9 @@ import numpy as np
 import os
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from keras.applications.inception_resnet_v2 import InceptionResNetV2
+from keras.applications.vgg16 import VGG16
 from keras.preprocessing import image
-from keras.applications.inception_resnet_v2 import preprocess_input
+from keras.applications.vgg16 import preprocess_input
 from keras.models import Model
 from keras.utils import to_categorical
 from keras.optimizers import RMSprop
@@ -14,13 +14,13 @@ from keras.layers.advanced_activations import PReLU
 from keras import regularizers
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
-flag = 0
+flag = 1
 save = 1
 
-inter_model = InceptionResNetV2(weights='imagenet', include_top=False,input_shape=(299,299,3))
+inter_model = VGG16(weights='imagenet', include_top=False)
 
-path = "data/train299/"
-store_path = 'artist/'
+path = "data/newtrain/"
+store_path = 'style/'
 x_train = np.load(store_path + "x_train.npy")
 x_test = np.load(store_path + "x_cv.npy")
 y_train = np.load(store_path + "y_train.npy")
@@ -42,15 +42,13 @@ y_test = to_categorical(y_test, num_classes = no_classes)
 
 
 if(flag == 0):
-    images = np.zeros((x_train.shape[0],299,299,3))
+    images = np.zeros((x_train.shape[0],224,224,3))
 
     print("Loading train images")
     for i in range(x_train.shape[0]):
         image_name = path + str(x_train[i])
         img = image.img_to_array(image.load_img(image_name))
         images[i] = img
-        if i % 2000 == 0:
-            print(i)
     #sd = np.std(images)
     #images -= mean
     #images /= sd
@@ -60,15 +58,13 @@ if(flag == 0):
     features_train = inter_model.predict(images)
     print("Feature generation complete")
 
-    images = np.zeros((x_test.shape[0],299,299,3))
+    images = np.zeros((x_test.shape[0],224,224,3))
 
     print("Loading test images")
     for i in range(x_test.shape[0]):
         image_name = path + str(x_test[i])
         img = image.img_to_array(image.load_img(image_name))
         images[i] = img
-        if i % 1000 == 0:
-            print(i)
     #sd = np.std(images)
     #images -= mean
     #images /= sd
@@ -80,12 +76,12 @@ if(flag == 0):
     images =[]
 
     if save:
-        np.save(store_path + "features_irv2_train.npy", features_train)
-        np.save(store_path + "features_irv2_test.npy", features_test)
+        np.save(store_path + "features_vgg16_train.npy", features_train)
+        np.save(store_path + "features_vgg16_test.npy", features_test)
 else:
     print("Loading features from files")
-    features_train = np.load(store_path + "features_irv2_train.npy")
-    features_test = np.load(store_path + "features_irv2_test.npy")
+    features_train = np.load(store_path + "features_vgg16_train.npy")
+    features_test = np.load(store_path + "features_vgg16_test.npy")
     print("Finished loading from file")
 
 input_layer = Input(shape=features_train.shape[1:])
@@ -111,4 +107,4 @@ model.fit(x = features_train, y = y_train, epochs = 50, validation_data = [featu
 print("Training Complete")
 
 print("Saving Model")
-model.save('models/irv2_artist.h5')
+model.save('models/vgg16_style.h5')

@@ -1,0 +1,28 @@
+Size of train: (25436,)
+Size of CV: (3180,)
+Number of classes: 6
+Loading features from files
+Finished loading from file
+Training Now
+Train on 25436 samples, validate on 3180 samples
+Epoch 1/50
+25436/25436 [==============================] - 10s 375us/step - loss: 4.0848 - acc: 0.6081 - top_k_categorical_accuracy: 0.9795 - val_loss: 1.6719 - val_acc: 0.7415 - val_top_k_categorical_accuracy: 0.9928
+Epoch 2/50
+25436/25436 [==============================] - 9s 356us/step - loss: 1.7639 - acc: 0.6930 - top_k_categorical_accuracy: 0.9886 - val_loss: 0.9910 - val_acc: 0.7381 - val_top_k_categorical_accuracy: 0.9909
+Epoch 3/50
+25436/25436 [==============================] - 9s 356us/step - loss: 1.1668 - acc: 0.7460 - top_k_categorical_accuracy: 0.9932 - val_loss: 1.0314 - val_acc: 0.7557 - val_top_k_categorical_accuracy: 0.9925
+Epoch 4/50
+25436/25436 [==============================] - 9s 353us/step - loss: 0.9503 - acc: 0.7886 - top_k_categorical_accuracy: 0.9954 - val_loss: 1.1198 - val_acc: 0.7553 - val_top_k_categorical_accuracy: 0.9931
+Epoch 5/50
+25436/25436 [==============================] - 9s 354us/step - loss: 0.8130 - acc: 0.8291 - top_k_categorical_accuracy: 0.9963 - val_loss: 1.2689 - val_acc: 0.7594 - val_top_k_categorical_accuracy: 0.9928
+Epoch 6/50
+25436/25436 [==============================] - 9s 354us/step - loss: 0.6580 - acc: 0.8607 - top_k_categorical_accuracy: 0.9976 - val_loss: 1.2319 - val_acc: 0.7686 - val_top_k_categorical_accuracy: 0.9925
+Epoch 7/50
+25436/25436 [==============================] - 9s 354us/step - loss: 0.5631 - acc: 0.8852 - top_k_categorical_accuracy: 0.9985 - val_loss: 1.3838 - val_acc: 0.7638 - val_top_k_categorical_accuracy: 0.9940
+Epoch 8/50
+25436/25436 [==============================] - 9s 354us/step - loss: 0.4656 - acc: 0.9082 - top_k_categorical_accuracy: 0.9990 - val_loss: 1.4044 - val_acc: 0.7717 - val_top_k_categorical_accuracy: 0.9921
+Epoch 9/50
+25436/25436 [==============================] - 9s 354us/step - loss: 0.3772 - acc: 0.9265 - top_k_categorical_accuracy: 0.9992 - val_loss: 1.5502 - val_acc: 0.7613 - val_top_k_categorical_accuracy: 0.9934
+Epoch 00009: early stopping
+Training Complete
+Saving Model

@@ -1,0 +1,52 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2018-03-02 14:05:56.602977: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-03-02 14:05:56.757265: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-03-02 14:05:56.757718: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.51GiB
+2018-03-02 14:05:56.757743: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0)
+Size of train: (25436,)
+Size of CV: (3180,)
+Number of classes: 6
+Loading train images
+Generating Features for train
+(25436, 224, 224, 3)
+Feature generation complete
+Loading test images
+Generating Features for test
+(3180, 224, 224, 3)
+Feature generation complete
+Training Now
+Train on 25436 samples, validate on 3180 samples
+Epoch 1/50
+25436/25436 [==============================] - 15s 579us/step - loss: 40.7214 - acc: 0.6449 - top_k_categorical_accuracy: 0.9851 - val_loss: 7.7917 - val_acc: 0.7223 - val_top_k_categorical_accuracy: 0.9921
+Epoch 2/50
+25436/25436 [==============================] - 11s 445us/step - loss: 3.7105 - acc: 0.7344 - top_k_categorical_accuracy: 0.9947 - val_loss: 1.9247 - val_acc: 0.7349 - val_top_k_categorical_accuracy: 0.9943
+Epoch 3/50
+25436/25436 [==============================] - 11s 446us/step - loss: 1.4456 - acc: 0.7614 - top_k_categorical_accuracy: 0.9972 - val_loss: 1.2397 - val_acc: 0.7491 - val_top_k_categorical_accuracy: 0.9940
+Epoch 4/50
+25436/25436 [==============================] - 11s 446us/step - loss: 1.0638 - acc: 0.7803 - top_k_categorical_accuracy: 0.9970 - val_loss: 1.0841 - val_acc: 0.7525 - val_top_k_categorical_accuracy: 0.9937
+Epoch 5/50
+25436/25436 [==============================] - 11s 439us/step - loss: 0.9322 - acc: 0.7981 - top_k_categorical_accuracy: 0.9982 - val_loss: 1.0264 - val_acc: 0.7519 - val_top_k_categorical_accuracy: 0.9937
+Epoch 6/50
+25436/25436 [==============================] - 11s 434us/step - loss: 0.8767 - acc: 0.8096 - top_k_categorical_accuracy: 0.9985 - val_loss: 1.0216 - val_acc: 0.7623 - val_top_k_categorical_accuracy: 0.9931
+Epoch 7/50
+25436/25436 [==============================] - 11s 427us/step - loss: 0.8452 - acc: 0.8183 - top_k_categorical_accuracy: 0.9987 - val_loss: 1.0434 - val_acc: 0.7616 - val_top_k_categorical_accuracy: 0.9943
+Epoch 8/50
+25436/25436 [==============================] - 11s 427us/step - loss: 0.8139 - acc: 0.8274 - top_k_categorical_accuracy: 0.9985 - val_loss: 1.0747 - val_acc: 0.7528 - val_top_k_categorical_accuracy: 0.9943
+Epoch 9/50
+25436/25436 [==============================] - 11s 427us/step - loss: 0.8045 - acc: 0.8308 - top_k_categorical_accuracy: 0.9984 - val_loss: 1.1209 - val_acc: 0.7381 - val_top_k_categorical_accuracy: 0.9937
+Epoch 10/50
+25436/25436 [==============================] - 11s 428us/step - loss: 0.7866 - acc: 0.8355 - top_k_categorical_accuracy: 0.9989 - val_loss: 1.0944 - val_acc: 0.7563 - val_top_k_categorical_accuracy: 0.9940
+Epoch 11/50
+25436/25436 [==============================] - 11s 426us/step - loss: 0.7749 - acc: 0.8399 - top_k_categorical_accuracy: 0.9990 - val_loss: 1.1060 - val_acc: 0.7343 - val_top_k_categorical_accuracy: 0.9940
+Epoch 12/50
+25436/25436 [==============================] - 11s 416us/step - loss: 0.7759 - acc: 0.8401 - top_k_categorical_accuracy: 0.9992 - val_loss: 1.0704 - val_acc: 0.7535 - val_top_k_categorical_accuracy: 0.9947
+Epoch 13/50
+25436/25436 [==============================] - 11s 415us/step - loss: 0.7567 - acc: 0.8489 - top_k_categorical_accuracy: 0.9990 - val_loss: 1.0939 - val_acc: 0.7550 - val_top_k_categorical_accuracy: 0.9953
+Epoch 00013: early stopping
+Training Complete
+Saving Model
