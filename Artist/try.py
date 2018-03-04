@@ -5,22 +5,26 @@ from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from keras.applications.vgg16 import VGG16
 from keras.preprocessing import image
+from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.vgg16 import preprocess_input
 from keras.models import Model
 from keras.utils import to_categorical
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
 from keras.layers import Dense, GlobalAveragePooling2D,Input,Flatten,Dropout
-from keras.layers.advanced_activations import PReLU
 from keras import regularizers
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
-flag = 1
+flag = 0
 save = 1
 
-inter_model = VGG16(weights='imagenet', include_top=False)
+inter_model = VGG16(weights='imagenet', include_top=False, input_shape = (224,224,3))
+for layer in inter_model.layers[:18]:
+    layer.trainable = False
+for i, layer in enumerate(inter_model.layers):
+   print(i, layer.name)
 
 path = "data/newtrain/"
-store_path = 'style/'
+store_path = 'artist/'
 x_train = np.load(store_path + "x_train.npy")
 x_test = np.load(store_path + "x_cv.npy")
 y_train = np.load(store_path + "y_train.npy")
@@ -40,52 +44,29 @@ print("Number of classes: " + str(no_classes))
 y_train = to_categorical(y_train, num_classes = no_classes)
 y_test = to_categorical(y_test, num_classes = no_classes)
 
+images_train = np.zeros((x_train.shape[0],224,224,3))
+print("Loading train images")
+for i in range(x_train.shape[0]):
+    image_name = path + str(x_train[i])
+    img = image.img_to_array(image.load_img(image_name))
+    images_train[i] = img
 
-if(flag == 0):
-    images = np.zeros((x_train.shape[0],224,224,3))
+print(images_train.shape)
+images_train = preprocess_input(images_train)
 
-    print("Loading train images")
-    for i in range(x_train.shape[0]):
-        image_name = path + str(x_train[i])
-        img = image.img_to_array(image.load_img(image_name))
-        images[i] = img
-    #sd = np.std(images)
-    #images -= mean
-    #images /= sd
-    print("Generating Features for train")
-    print(images.shape)
-    images = preprocess_input(images)
-    features_train = inter_model.predict(images)
-    print("Feature generation complete")
 
-    images = np.zeros((x_test.shape[0],224,224,3))
+images_test = np.zeros((x_test.shape[0],224,224,3))
 
-    print("Loading test images")
-    for i in range(x_test.shape[0]):
-        image_name = path + str(x_test[i])
-        img = image.img_to_array(image.load_img(image_name))
-        images[i] = img
-    #sd = np.std(images)
-    #images -= mean
-    #images /= sd
-    print("Generating Features for test")
-    print(images.shape)
-    images = preprocess_input(images)
-    features_test = inter_model.predict(images)
-    print("Feature generation complete")
-    images =[]
+print("Loading test images")
+for i in range(x_test.shape[0]):
+    image_name = path + str(x_test[i])
+    img = image.img_to_array(image.load_img(image_name))
+    images_test[i] = img
 
-    if save:
-        np.save(store_path + "features_vgg16_train.npy", features_train)
-        np.save(store_path + "features_vgg16_test.npy", features_test)
-else:
-    print("Loading features from files")
-    features_train = np.load(store_path + "features_vgg16_train.npy")
-    features_test = np.load(store_path + "features_vgg16_test.npy")
-    print("Finished loading from file")
+print(images_test.shape)
+images_test = preprocess_input(images_test)
 
-input_layer = Input(shape=features_train.shape[1:])
-f1=Flatten()(input_layer)
+f1=Flatten()(inter_model.output)
 y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(f1)
 y=Dropout(0.5)(y)
 y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(y)
@@ -93,18 +74,28 @@ y = Dropout(0.5)(y)
 #y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.01),activity_regularizer=regularizers.l1(0.01))(y)
 #y=Dropout(0.5)(y)
 predictions = Dense(no_classes, activation='softmax',kernel_initializer='glorot_normal')(y)
-model = Model(inputs=input_layer, outputs=predictions)
+model = Model(inputs=inter_model.input, outputs=predictions)
 rms=RMSprop(lr=0.0001)#, decay = 0.01)
-
+adam = Adam(lr=0.0001,decay = 0.01)
 model.compile(optimizer= rms, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
 
 reduce_lr = ReduceLROnPlateau(monitor='val_acc', factor=0.2, patience=4,min_lr=0.000001)
 early = EarlyStopping(monitor='val_acc', min_delta=0, patience=7, verbose=1, mode='auto')
 
+train_datagen = ImageDataGenerator(horizontal_flip = True)
+test_datagen = ImageDataGenerator()
+
 print("Training Now")
-model.fit(x = features_train, y = y_train, epochs = 50, validation_data = [features_test, y_test],callbacks= [early,reduce_lr])
+model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 10, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early,reduce_lr])
+
+for layer in inter_model.layers[:18]:
+    layer.trainable = True
+
+model.compile(optimizer= adam, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
+model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 15, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early])
+
 
 print("Training Complete")
 
 print("Saving Model")
-model.save('models/vgg16_style.h5')
+model.save('models/vgg16_artist.h5')

@@ -14,10 +14,10 @@ from keras.layers.advanced_activations import PReLU
 from keras import regularizers
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
-flag = 1
+flag = 0
 save = 1
 
-inter_model = VGG16(weights='imagenet', include_top=False)
+inter_model = VGG16(weights='imagenet', include_top=False, input_shape = (224,224,3))
 
 path = "data/newtrain/"
 store_path = 'artist/'
@@ -76,20 +76,20 @@ if(flag == 0):
     images =[]
 
     if save:
-        np.save("features_vgg16_train.npy", features_train)
-        np.save("features_vgg16_test.npy", features_test)
+        np.save(store_path + "features_vgg16_train.npy", features_train)
+        np.save(store_path + "features_vgg16_test.npy", features_test)
 else:
     print("Loading features from files")
-    features_train = np.load("features_vgg16_train.npy")
-    features_test = np.load("features_vgg16_test.npy")
+    features_train = np.load(store_path + "features_vgg16_train.npy")
+    features_test = np.load(store_path + "features_vgg16_test.npy")
     print("Finished loading from file")
 
 input_layer = Input(shape=features_train.shape[1:])
 f1=Flatten()(input_layer)
 y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(f1)
-y=Dropout(0.2)(y)
+y=Dropout(0.5)(y)
 y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.05))(y)
-y = Dropout(0.2)(y)
+y = Dropout(0.5)(y)
 #y = Dense(1024, activation='relu',kernel_initializer='glorot_normal',kernel_regularizer=regularizers.l2(0.01),activity_regularizer=regularizers.l1(0.01))(y)
 #y=Dropout(0.5)(y)
 predictions = Dense(no_classes, activation='softmax',kernel_initializer='glorot_normal')(y)
@@ -107,4 +107,4 @@ model.fit(x = features_train, y = y_train, epochs = 50, validation_data = [featu
 print("Training Complete")
 
 print("Saving Model")
-model.save('vgg16_artist_pred_new.h5')
+model.save('models/vgg16_artist.h5')

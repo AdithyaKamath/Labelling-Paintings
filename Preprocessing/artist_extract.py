@@ -11,12 +11,12 @@ store_path = 'artist/'
 data = pd.read_csv("data/all_data_info.csv")
 
 # Selects artists who occur more than 300 times
-X = data.groupby('artist').filter(lambda x: len(x) >= 300)
+X = data.groupby('artist').filter(lambda x: len(x) >= 400)
 
 print(X.shape)
 
 # Selects 300 instances per artist
-X_new = X.groupby('artist', as_index=False).apply(lambda array: array.loc[np.random.choice(array.index, 300, False),:])
+X_new = X.groupby('artist', as_index=False).apply(lambda array: array.loc[np.random.choice(array.index, 400, False),:])
 
 print(X_new.shape)
 
