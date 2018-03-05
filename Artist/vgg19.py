@@ -4,26 +4,26 @@ import numpy as np
 import os
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from keras.applications.vgg16 import VGG16
+from keras.applications.vgg19 import VGG19
 from keras.preprocessing import image
 from keras.preprocessing.image import ImageDataGenerator
-from keras.applications.vgg16 import preprocess_input
+from keras.applications.vgg19 import preprocess_input
 from keras.models import Model
 from keras.utils import to_categorical
 from keras.optimizers import RMSprop, Adam
 from keras.layers import Dense, GlobalAveragePooling2D,Input,Flatten,Dropout
 from keras import regularizers
-from keras.callbacks import EarlyStopping, ReduceLROnPlateau, TensorBoard, CSVLogger, ModelCheckpoint
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
 flag = 0
 save = 1
 
-inter_model = VGG16(weights='imagenet', include_top=False, input_shape = (224,224,3))
-for layer in inter_model.layers[:18]:
+inter_model = VGG19(weights='imagenet', include_top=False, input_shape = (224,224,3))
+for layer in inter_model.layers:
     layer.trainable = False
 for i, layer in enumerate(inter_model.layers):
    print(i, layer.name)
-
+inter_model.summary()
 path = "data/newtrain/"
 store_path = 'artist/'
 x_train = np.load(store_path + "x_train.npy")
@@ -85,21 +85,18 @@ early = EarlyStopping(monitor='val_acc', min_delta=0, patience=7, verbose=1, mod
 
 train_datagen = ImageDataGenerator(horizontal_flip = True)
 test_datagen = ImageDataGenerator()
-tb = TensorBoard()
-checkpoint = ModelCheckpoint("vgg16_artist.h5", monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
-#clog = CSVLogger("artist/artist_vgg16.log", append=True)
 
 print("Training Now")
-model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 10, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early,reduce_lr,tb,checkpoint])
+model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 10, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early,reduce_lr])
 
-for layer in inter_model.layers[:18]:
+for layer in inter_model.layers:
     layer.trainable = True
 
 model.compile(optimizer= adam, loss='categorical_crossentropy',metrics=['accuracy', 'top_k_categorical_accuracy'])
-model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 15, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early,tb,checkpoint])
+model.fit_generator(train_datagen.flow(images_train, y_train), epochs = 15, validation_data = test_datagen.flow(images_test, y_test),callbacks= [early])
 
 
 print("Training Complete")
 
 print("Saving Model")
-model.save('models/vgg16_artist.h5')
+model.save('models/vgg19_artist.h5')

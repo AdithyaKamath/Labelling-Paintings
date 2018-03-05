@@ -16,14 +16,13 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import SVC
 
-path = "data/newtrain/"
-store_path = 'artist/'
 
-features=np.load(store_path + "features_vgg16_train.npy")
-ftest=np.load(store_path + "features_vgg16_test.npy")
 
-y_train=np.load(store_path + 'y_train.npy')
-y_test=np.load(store_path + 'y_cv.npy')
+features=np.load("vgg_features_train.npy")
+ftest=np.load("vgg_features_test.npy")
+
+y_train=np.load('y_train.npy')
+y_test=np.load('y_test.npy')
 
 #y_train=np.argmax(y_train,axis=1)
 

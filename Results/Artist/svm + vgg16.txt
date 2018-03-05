@@ -1,0 +1,10 @@
+('n_components = ', 2, '    n_estimators = ', 80, '    accuracy = ', 0.12905405405405404)
+('n_components = ', 3, '    n_estimators = ', 20, '    accuracy = ', 0.16283783783783784)
+('n_components = ', 4, '    n_estimators = ', 88, '    accuracy = ', 0.20810810810810812)
+
+('n_components = ', 5, '    n_estimators = ', 34, '    accuracy = ', 0.252027027027027)
+('n_components = ', 6, '    n_estimators = ', 11, '    accuracy = ', 0.28175675675675677)
+('n_components = ', 7, '    n_estimators = ', 86, '    accuracy = ', 0.3202702702702703)
+('n_components = ', 8, '    n_estimators = ', 73, '    accuracy = ', 0.33716216216216216)
+('n_components = ', 9, '    n_estimators = ', 20, '    accuracy = ', 0.3581081081081081)
+('n_components = ', 10, '    n_estimators = ', 43, '    accuracy = ', 0.3831081081081081)
