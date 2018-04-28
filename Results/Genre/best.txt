@@ -1,0 +1,80 @@
+/usr/local/lib/python2.7/dist-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of iss
+ubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float
+).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2018-04-19 15:17:58.294345: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions tha
+t this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX
+2018-04-19 15:17:58.453062: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:895] successful NUMA node read f
+rom SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2018-04-19 15:17:58.453366: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105] Found device 0 with properties
+: 
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:04.0
+totalMemory: 15.90GiB freeMemory: 15.53GiB
+2018-04-19 15:17:58.453391: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1195] Creating TensorFlow device (/d
+evice:GPU:0) -> (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:04.0, compute capability: 6.0)
+Size of train: (25436,)
+Size of CV: (3180,)
+Number of classes: 6
+Loading train images
+(25436, 224, 224, 3)
+Loading test images
+(3180, 224, 224, 3)
+Training Now
+Train on 25436 samples, validate on 3180 samples
+Epoch 1/5
+  128/25436 [..............................] - ETA: 15:33 - loss: 10.5018 - acc: 0.1484 - top_k_categorical_accurac
+  256/25436 [..............................] - ETA: 8:39 - loss: 9.5357 - acc: 0.2422 - top_k_categorical_accuracy:
+  384/25436 [..............................] - ETA: 6:19 - loss: 9.4963 - acc: 0.2578 - top_k_categorical_accuracy:
+  512/25436 [..............................] - ETA: 5:09 - loss: 9.1797 - acc: 0.2812 - top_k_categorical_accuracy:
+ 0.8828
+  640/25436 [..............................] - ETA: 4:26 - loss: 9.0794 - acc: 0.2906 - top_k_categorical_accuracy:
+25436/25436 [==============================] - 127s 5ms/step - loss: 4.5322 - acc: 0.6081 - top_k_categorical_accuracy: 0.9809 - val_loss: 2.7655 - val_acc: 0.7248 - val_top_k_categorical_accuracy
+: 0.9950
+Epoch 2/5
+25436/25436 [==============================] - 120s 5ms/step - loss: 2.8452 - acc: 0.6989 - top_k_categorical_accuracy: 0.9915 - val_loss: 1.5360 - val_acc: 0.7453 - val_top_k_categorical_accuracy
+: 0.9950
+Epoch 3/5
+25436/25436 [==============================] - 120s 5ms/step - loss: 1.9201 - acc: 0.7296 - top_k_categorical_accuracy: 0.9931 - val_loss: 1.0789 - val_acc: 0.7509 - val_top_k_categorical_accuracy: 0.9934
+Epoch 4/5
+25436/25436 [==============================] - 120s 5ms/step - loss: 1.3177 - acc: 0.7647 - top_k_categorical_accuracy: 0.9946 - val_loss: 0.8939 - val_acc: 0.7519 - val_top_k_categorical_accuracy: 0.9947
+Epoch 5/5
+25436/25436 [==============================] - 120s 5ms/step - loss: 0.9831 - acc: 0.7993 - top_k_categorical_accuracy: 0.9967 - val_loss: 0.7578 - val_acc: 0.7579 - val_top_k_categorical_accuracy: 0.9956
+Train on 25436 samples, validate on 3180 samples
+Epoch 1/10
+25436/25436 [==============================] - 261s 10ms/step - loss: 0.8185 - acc: 0.7110 - top_k_categorical_accuracy: 0.9915 - val_loss: 0.6805 - val_acc: 0.7591 - val_top_k_categorical_accuracy: 0.9956
+Epoch 2/10
+25436/25436 [==============================] - 255s 10ms/step - loss: 0.5057 - acc: 0.8185 - top_k_categorical_accuracy: 0.9983 - val_loss: 0.6046 - val_acc: 0.7827 - val_top_k_categorical_accuracy: 0.9950
+Epoch 3/10
+25436/25436 [==============================] - 254s 10ms/step - loss: 0.3439 - acc: 0.8775 - top_k_categorical_accuracy: 0.9991 - val_loss: 0.5775 - val_acc: 0.7912 - val_top_k_categorical_accuracy: 0.9959
+Epoch 4/10
+25436/25436 [==============================] - 256s 10ms/step - loss: 0.2321 - acc: 0.9180 - top_k_categorical_accuracy: 0.9996 - val_loss: 0.6147 - val_acc: 0.7984 - val_top_k_categorical_accuracy: 0.9953
+Epoch 5/10
+23552/25436 [==========================>...] - ETA: 17s - loss: 0.1611 - acc: 0.9431 - top_k_categorical_accuracy: 0.9998 
+25436/25436 [==============================] - 255s 10ms/step - loss: 0.1607 - acc: 0.9432 - top_k_categorical_accuracy: 0.9998 - val_loss: 0.6704 - val_acc: 0.7950 - val_top_k_categorical_accuracy: 0.9969
+Epoch 6/10
+25436/25436 [==============================] - 257s 10ms/step - loss: 0.1145 - acc: 0.9595 - top_k_categorical_accuracy: 1.0000 - val_loss: 0.7109 - val_acc: 0.7956 - val_top_k_categorical_accuracy: 0.9953
+Epoch 7/10
+25436/25436 [==============================] - 254s 10ms/step - loss: 0.0854 - acc: 0.9691 - top_k_categorical_accuracy: 1.0000 - val_loss: 0.7686 - val_acc: 0.7953 - val_top_k_categorical_accuracy: 0.9943
+Epoch 8/10
+10624/25436 [===========>..................] - ETA: 2:21 - loss: 0.0654 - acc: 0.9773 - top_k_categorical_accuracy: 1.0000^CTraceback (most recent call last):
+  File "best.py", line 94, in <module>
+    model.fit(x = images_train,y =  y_train, batch_size=128, epochs = 10, validation_data = [images_test, y_test],callbacks= [early])
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/training.py", line 1669, in fit
+    validation_steps=validation_steps)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/training.py", line 1206, in _fit_loop
+    outs = f(ins_batch)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 2475, in __call__
+    **self.session_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1128, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1344, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1350, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1329, in _run_fn
+    status, run_metadata)
+KeyboardInterrupt

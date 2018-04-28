@@ -17,9 +17,9 @@ count = 0
 for image_filename in tqdm(all_files):
 	try:
 		img = Image.open( os.path.join(path, image_filename) )
-		img.resize((299, 299))\
+		img.resize((224, 224))\
 			.convert('RGB')\
-			.save( os.path.join("data/train299/", image_filename) )
+			.save( os.path.join("data/train/", image_filename) )
 		count = count + 1
 	except Exception as e:
 		print("Unable to process {}".format(image_filename))

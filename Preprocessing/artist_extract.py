@@ -52,7 +52,7 @@ x_cv, x_test, labels_cv, labels_test = train_test_split(x_test, labels_test, tes
 print(x_cv.shape, x_test.shape, labels_cv.shape, labels_test.shape)
 
 np.save(store_path + 'x_train.npy', x_train)
-np.save(store_path + 'x_test.npy', x_train)
+np.save(store_path + 'x_test.npy', x_test)
 np.save(store_path + 'x_cv.npy', x_cv)
 np.save(store_path + 'y_train.npy', labels_train)
 np.save(store_path + 'y_test.npy', labels_test)
